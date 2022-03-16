@@ -114,59 +114,51 @@ public class MainSite {
         HomePage homepage = new HomePage(driver);
         homepage.GoToSubCategory();
         ShoesPage shoespage = new ShoesPage(driver);
-
         Assert.assertEquals(shoespage.FilterByRedAndCheck(),true);//Checks the color
         Thread.sleep(600);
 
     }
-    public void GoToitemPage() throws InterruptedException {
-        Thread.sleep(1500);
-        Actions action = new Actions(driver);
-        WebElement we =driver.findElement(By.xpath("//ul[@class=\"top-menu notmobile\"]/li[3]/a"));
-        action.moveToElement(we).moveToElement(driver.findElement(By.xpath("/html/body/div[6]/div[2]/ul[1]/li[3]/ul/li[1]/a"))).click().build().perform();
-        Thread.sleep(1500);
-        driver.findElement(By.id("attribute-option-15")).click();
-        Thread.sleep(5000);
-        driver.findElement(By.partialLinkText("adidas Consortium Campus 80s Running Shoes")).click();
-        Thread.sleep(200);
-        System.out.println(driver.findElement(By.id("product_attribute_10_25")).isSelected());
 
-
-        Select dropdown2 = new Select(driver.findElement(By.id("product_attribute_9")));
-        dropdown2.selectByValue("21");
-    }
     @Test
     public void T07_AddToCart() throws InterruptedException {
-
-
-        GoToitemPage();
+        ShoesPage shoespage = new ShoesPage(driver);
+        shoespage.GoToitemPage();
 
         //The product has been added to your
-        driver.findElement(By.id("add-to-cart-button-25")).click();
+        addidasShoesPage addidas = new addidasShoesPage(driver);
+        addidas.ClickAddToCart();
         Thread.sleep(2000);
 
-        String Response2 =driver.findElement(By.xpath("//*[@class=\"bar-notification success\"]")).getText();
+        String Response2 = addidas.NotificationResposne();
         Assert.assertTrue(Response2.contains("he product has been added to your shopping cart"));
     }
     @Test
     public void T08_AddToWishList() throws InterruptedException {
 
-        GoToitemPage();
+        ShoesPage shoespage = new ShoesPage(driver);
+        shoespage.GoToitemPage();
 
 
         //The product has been added to your
-        driver.findElement(By.id("add-to-wishlist-button-25")).click();
-        Thread.sleep(3000);
-        String Response2 =driver.findElement(By.xpath("//*[@class=\"bar-notification success\"]")).getText();
+        addidasShoesPage addidas = new addidasShoesPage(driver);
+        addidas.ClickAddToWishlist();
+        Thread.sleep(2000);
+
+        String Response2 =addidas.NotificationResposne();
         Assert.assertTrue(Response2.contains("he product has been added to your wishlist"));
 
     }
     @Test
     public void T09_AddToCompareList() throws InterruptedException {
-        GoToitemPage();
-        driver.findElement(By.xpath("//button[@class=\"button-2 add-to-compare-list-button\"]")).click();
+        //GoToitemPage();
+        ShoesPage shoespage = new ShoesPage(driver);
+        shoespage.GoToitemPage();
+
+        addidasShoesPage addidas = new addidasShoesPage(driver);
+        addidas.ClickAddToCompareLsit();
+
         Thread.sleep(2000);
-        String Response2 =driver.findElement(By.xpath("//*[@class=\"bar-notification success\"]")).getText();
+        String Response2 =addidas.NotificationResposne();
         System.out.println("LAST RESPONSE IS "+Response2);
         Assert.assertTrue(Response2.contains("he product has been added to your product comparison"));
 
