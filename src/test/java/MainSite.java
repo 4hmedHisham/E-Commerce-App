@@ -27,28 +27,22 @@ public class MainSite {
 
     @Test
     public void T01_Register(){
-        CommandText.SendEnglish(CommandText.Commands.Click_Register_on_HomePage,driver);
-        driver.findElement(By.xpath("//input[@type=\"radio\"][@value=\"M\"]")).click();
-        driver.findElement(By.id("FirstName")).sendKeys("Ahmed");
-        driver.findElement(By.id("LastName")).sendKeys("Hisham");
-        Select dropdown = new Select(driver.findElement(By.name("DateOfBirthDay")));
-        dropdown.selectByValue("1");
+        //CommandText.SendEnglish(CommandText.Commands.Click_Register_on_HomePage,driver);
+        HomePage hompage= new HomePage(driver);
+        hompage.ClickRegister();
+        RegisterPage registerpage = new RegisterPage(driver);
+        registerpage.SelectMale();
+        registerpage.FillFirstName();
+        registerpage.FillLastName();
+        registerpage.FillDayOfBirth();
+        registerpage.FillMonthOfBirth();
+        registerpage.FillYearOfBirth();
 
-        dropdown = new Select(driver.findElement(By.name("DateOfBirthMonth")));
-        dropdown.selectByValue("1");
 
-        dropdown = new Select(driver.findElement(By.name("DateOfBirthYear")));
-        dropdown.selectByValue("1997");
-
-        Random rand = new Random();
-        randomnumber=rand.nextInt(1000);
-        Mail="ahmedHisham"+String.valueOf(randomnumber)+"@gmail.com";
-        Password="123456";
-        driver.findElement(By.id("Email")).sendKeys(Mail);
-        driver.findElement(By.id("Company")).sendKeys("UdacityTesting");
-        driver.findElement(By.id("Password")).sendKeys(Password);
-        driver.findElement(By.id("ConfirmPassword")).sendKeys(Password);
-        driver.findElement(By.id("register-button")).click();
+        Mail=registerpage.FillRandomMail();
+        registerpage.FillPassword();
+        registerpage.FillCompany();
+        registerpage.CLickRegister();
 
         String AssertionText = driver.findElement(By.xpath("//div[@class=\"result\"]")).getText();
         Assert.assertEquals(AssertionText,"Your registration completed");
