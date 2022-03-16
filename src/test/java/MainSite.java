@@ -74,31 +74,16 @@ public class MainSite {
 
     @Test
     public void T03_SwitchBetweenCurrencies() throws InterruptedException {
-                driver.findElement(By.id("customerCurrency"));
 
-        Select dropdown = new Select(driver.findElement(By.id("customerCurrency")));
-        WebElement option =dropdown.getFirstSelectedOption();
+//        driver.findElement(By.id("customerCurrency"));
 
-        dropdown.selectByVisibleText("Euro");
-        dropdown = new Select(driver.findElement(By.id("customerCurrency")));
-        option =dropdown.getFirstSelectedOption();
-        System.out.println("OPTION AFter Euro "+option.getText().toLowerCase());
+        HomePage homePage = new HomePage(driver);
+        String response =homePage.ChangeCurrencyToEuro();
         Thread.sleep(500);
-        dropdown = new Select(driver.findElement(By.id("customerCurrency")));
-
-//        System.out.println(driver.findElement(By.id("customerCurrency")).getText());
-//        System.out.println(dropdown.getOptions());
-//        System.out.println(dropdown.getFirstSelectedOption().getText());
-
-        Assert.assertEquals(dropdown.getFirstSelectedOption().getText(),"Euro");
-
-        dropdown = new Select(driver.findElement(By.id("customerCurrency")));
-        dropdown.selectByVisibleText("US Dollar");
-        dropdown = new Select(driver.findElement(By.id("customerCurrency")));
-         option =dropdown.getFirstSelectedOption();
-        System.out.println("OPTION After US DOLLAR "+option.getText());
+        Assert.assertEquals(response,"Euro");
+        response=homePage.ChangeCurrencyToDollar();
         Thread.sleep(500);
-        Assert.assertEquals(dropdown.getFirstSelectedOption().getText(),"US Dollar");
+        Assert.assertEquals(response,"US Dollar");
     }
     @Test
     public void T04_User_Choose_Differnt_category() throws InterruptedException {
