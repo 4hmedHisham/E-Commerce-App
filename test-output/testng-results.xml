@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="11" total="13" passed="2">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default Suite" duration-ms="18711" started-at="2022-03-16T21:08:47 EET" finished-at="2022-03-16T21:09:06 EET">
+    <groups>
+    </groups>
+    <test name="ECommerceAutomation" duration-ms="18711" started-at="2022-03-16T21:08:47 EET" finished-at="2022-03-16T21:09:06 EET">
+      <class name="MainSite">
+        <test-method status="PASS" signature="OpenBrowser()[pri:0, instance:MainSite@49fc609f]" name="OpenBrowser" is-config="true" duration-ms="2266" started-at="2022-03-16T21:08:47 EET" finished-at="2022-03-16T21:08:49 EET">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- OpenBrowser -->
+        <test-method status="PASS" signature="NavigateToUrl()[pri:0, instance:MainSite@49fc609f]" name="NavigateToUrl" is-config="true" duration-ms="3826" started-at="2022-03-16T21:08:49 EET" finished-at="2022-03-16T21:08:53 EET">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- NavigateToUrl -->
+        <test-method status="PASS" signature="T01_Register()[pri:0, instance:MainSite@49fc609f]" name="T01_Register" duration-ms="5046" started-at="2022-03-16T21:08:53 EET" finished-at="2022-03-16T21:08:58 EET">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- T01_Register -->
+        <test-method status="PASS" signature="NavigateToUrl()[pri:0, instance:MainSite@49fc609f]" name="NavigateToUrl" is-config="true" duration-ms="1975" started-at="2022-03-16T21:08:58 EET" finished-at="2022-03-16T21:09:00 EET">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- NavigateToUrl -->
+        <test-method status="PASS" signature="T02_Login()[pri:0, instance:MainSite@49fc609f]" name="T02_Login" duration-ms="4362" started-at="2022-03-16T21:09:00 EET" finished-at="2022-03-16T21:09:04 EET">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- T02_Login -->
+        <test-method status="PASS" signature="CloseDriver()[pri:0, instance:MainSite@49fc609f]" name="CloseDriver" is-config="true" duration-ms="1217" started-at="2022-03-16T21:09:04 EET" finished-at="2022-03-16T21:09:06 EET">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CloseDriver -->
+      </class> <!-- MainSite -->
+    </test> <!-- ECommerceAutomation -->
+  </suite> <!-- Default Suite -->
+</testng-results>

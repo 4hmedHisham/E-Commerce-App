@@ -1,3 +1,4 @@
+import org.apache.commons.logging.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,7 +27,7 @@ public class MainSite {
 
 
     @Test
-    public void T01_Register(){
+    public void T01_Register() throws InterruptedException {
         //CommandText.SendEnglish(CommandText.Commands.Click_Register_on_HomePage,driver);
         HomePage hompage= new HomePage(driver);
         hompage.ClickRegister();
@@ -37,27 +38,30 @@ public class MainSite {
         registerpage.FillDayOfBirth();
         registerpage.FillMonthOfBirth();
         registerpage.FillYearOfBirth();
-
-
-        Mail=registerpage.FillRandomMail();
-        registerpage.FillPassword();
         registerpage.FillCompany();
+        Mail=registerpage.FillRandomMail();
+        Password=registerpage.FillPassword();
         registerpage.CLickRegister();
 
         String AssertionText = driver.findElement(By.xpath("//div[@class=\"result\"]")).getText();
         Assert.assertEquals(AssertionText,"Your registration completed");
         //System.out.println("AssedrtionTExt is " +AssertionText);
         driver.findElement(By.xpath("//*[contains(@class,'ico-logout')]")).click();
+        Thread.sleep(2000);
     }
 
     @Test
     public void T02_Login() throws InterruptedException {
-        driver.findElement(By.xpath("//*[contains(@class,\"ico-login\")]")).click();
-
+        HomePage homepage=new HomePage(driver);
+        homepage.ClickLogin();
         Thread.sleep(700);
-        driver.findElement(By.id("Email")).sendKeys(Mail);
-        driver.findElement(By.id("Password")).sendKeys(Password);
-        driver.findElement(By.xpath("//button[@type=\"submit\"][@class=\"button-1 login-button\"]")).click();
+        System.out.println("MAIL IS : "+Mail);
+        System.out.println("Password is  IS : "+Password);
+        LoginPage loginpage= new LoginPage(driver);
+        loginpage.fillusername(Mail);
+        loginpage.fillpassword(Password);
+        loginpage.clickLogin();
+
         Thread.sleep(1500);
 
 

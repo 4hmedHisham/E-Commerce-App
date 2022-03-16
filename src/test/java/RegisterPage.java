@@ -33,12 +33,13 @@ public class RegisterPage {
         driver.findElement(By.id("Email")).sendKeys(Mail);
         return Mail;
     }
-    public void FillPassword(){
+    public String FillPassword(){
         String Password="123456";
 
 
         driver.findElement(By.id("Password")).sendKeys(Password);
         driver.findElement(By.id("ConfirmPassword")).sendKeys(Password);
+        return Password;
     }
     public void FillCompany(){
         driver.findElement(By.id("Company")).sendKeys("UdacityTesting");
@@ -46,18 +47,6 @@ public class RegisterPage {
     public void CLickRegister(){  driver.findElement(By.id("register-button")).click();}
 
     public void all(){
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
 
