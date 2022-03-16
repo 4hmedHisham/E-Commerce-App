@@ -111,17 +111,11 @@ public class MainSite {
     @Test
     public void T06_FilterByColor() throws InterruptedException {
                 //driver.findElement(By.xpath("//a[contains(text(), 'Shoes')]")).click();
+        HomePage homepage = new HomePage(driver);
+        homepage.GoToSubCategory();
+        ShoesPage shoespage = new ShoesPage(driver);
 
-        Actions action = new Actions(driver);
-        WebElement we =driver.findElement(By.xpath("//a[contains(text(), 'Apparel')]"));
-        action.moveToElement(we).moveToElement(driver.findElement(By.xpath("//a[contains(text(), 'Shoes')]"))).click().build().perform();
-        Thread.sleep(1500);
-        driver.findElement(By.id("attribute-option-15")).click();
-        Thread.sleep(3000);
-        driver.findElement(By.partialLinkText("adidas Consortium Campus 80s Running Shoes")).click();
-        Thread.sleep(200);
-        System.out.println(driver.findElement(By.id("product_attribute_10_25")).isSelected());
-        Assert.assertEquals(driver.findElement(By.id("product_attribute_10_25")).isSelected(),true);//Checks the color
+        Assert.assertEquals(shoespage.FilterByRedAndCheck(),true);//Checks the color
         Thread.sleep(600);
 
     }
