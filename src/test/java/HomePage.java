@@ -1,6 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 public class HomePage {
@@ -28,5 +29,23 @@ public class HomePage {
         option =dropdown.getFirstSelectedOption();
         //.out.println("OPTION After US DOLLAR "+);
         return option.getText();
+    }
+    public String GotoComputersPage(){
+        driver.findElement(By.xpath("//a[@href=\"/computers\"]")).click();
+        String txt=driver.findElement(By.xpath("//div[@class='page-title']")).getText();
+        return txt;
+    }
+    public String  GoToElectronicsPage(){
+        driver.findElement(By.xpath("//a[@href=\"/electronics\"]")).click();
+        String txt=driver.findElement(By.xpath("//div[@class='page-title']")).getText();
+        System.out.println(txt);
+        return txt;
+    }
+    public String GoToSubCategory(){
+        Actions action = new Actions(driver);
+        WebElement we =driver.findElement(By.xpath("//a[contains(text(), 'Apparel')]"));
+        action.moveToElement(we).moveToElement(driver.findElement(By.xpath("//a[contains(text(), 'Shoes')]"))).click().build().perform();
+        String txt=driver.findElement(By.xpath("//div[@class='page-title']")).getText();
+        return txt;
     }
 }

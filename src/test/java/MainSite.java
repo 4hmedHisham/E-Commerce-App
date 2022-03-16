@@ -88,15 +88,13 @@ public class MainSite {
     @Test
     public void T04_User_Choose_Differnt_category() throws InterruptedException {
         //driver.navigate().to("https://demo.nopcommerce.com/computers");
-        driver.findElement(By.xpath("//a[@href=\"/computers\"]")).click();
-        String txt=driver.findElement(By.xpath("//div[@class='page-title']")).getText();
-        System.out.println(txt);
+        HomePage homepage = new HomePage(driver);
+
+        String txt =homepage.GotoComputersPage();
         Assert.assertEquals(txt,"Computers");
         NavigateToUrl();
 
-        driver.findElement(By.xpath("//a[@href=\"/electronics\"]")).click();
-        txt=driver.findElement(By.xpath("//div[@class='page-title']")).getText();
-        System.out.println(txt);
+        txt=homepage.GoToElectronicsPage();
         Assert.assertEquals(txt,"Electronics");
         NavigateToUrl();
         Thread.sleep(1500);
@@ -104,11 +102,9 @@ public class MainSite {
     }
     @Test
     public void T05_GetSubCategory() throws InterruptedException {
-         Actions action = new Actions(driver);
-         WebElement we =driver.findElement(By.xpath("//a[contains(text(), 'Apparel')]"));
-        action.moveToElement(we).moveToElement(driver.findElement(By.xpath("//a[contains(text(), 'Shoes')]"))).click().build().perform();
-        String txt=driver.findElement(By.xpath("//div[@class='page-title']")).getText();
-        System.out.println(txt);
+        HomePage homepage = new HomePage(driver);
+
+        String txt = homepage.GoToSubCategory();
         Assert.assertEquals(txt,"Shoes");
         Thread.sleep(300);
     }
