@@ -166,44 +166,16 @@ public class MainSite {
 
     @Test
     public void T10_CreateSucessfulOrder() throws InterruptedException {
-        driver.findElement(By.id("topcartlink")).click();
+       HomePage homepage = new HomePage(driver);
+       homepage.ClickCartIcon();
         Thread.sleep(1000);
-        driver.findElement(By.id("termsofservice")).click();
-        driver.findElement(By.id("checkout")).click();
-        Thread.sleep(700);
-//        driver.findElement(By.id("BillingNewAddress_FirstName")).sendKeys("Ahmed");
-//        driver.findElement(By.id("BillingNewAddress_LastName")).sendKeys("Hisham");
-//        driver.findElement(By.id("BillingNewAddress_Email")).sendKeys("Checkoutmail@gmail.com");
-//        driver.findElement(By.id("BillingNewAddress_Company")).sendKeys("Company2");
-
-        Select dropdown = new Select(driver.findElement(By.id("BillingNewAddress_CountryId")));
-        dropdown.selectByValue("1");
-        Thread.sleep(1000);
-        dropdown = new Select(driver.findElement(By.id("BillingNewAddress_StateProvinceId")));
-        dropdown.selectByValue("1");
-
-
-        driver.findElement(By.id("BillingNewAddress_City")).sendKeys("CAIROOOO");
-        driver.findElement(By.id("BillingNewAddress_Address1")).sendKeys("ADRS1");
-        driver.findElement(By.id("BillingNewAddress_Address2")).sendKeys("ADRS2");
-        driver.findElement(By.id("BillingNewAddress_ZipPostalCode")).sendKeys("12211");
-
-        driver.findElement(By.id("BillingNewAddress_PhoneNumber")).sendKeys("+211100");
-        driver.findElement(By.id("BillingNewAddress_FaxNumber")).sendKeys("+200011");
-
-//    driver.findElement(By.xpath("//BUTTON[@class=\"button-1 new-address-next-step-button\"]")).click();
-//    Thread.sleep(500);
-        driver.findElement(By.xpath("//button[@class=\"button-1 new-address-next-step-button\"]")).click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//button[@class=\"button-1 shipping-method-next-step-button\"]")).click();//button-1 shipping-method-next-step-button
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//button[@class=\"button-1 payment-method-next-step-button\"]")).click();//button-1 payment-method-next-step-button
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//button[@class=\"button-1 payment-info-next-step-button\"]")).click();//button-1 payment-info-next-step-button
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//button[@class=\"button-1 confirm-order-next-step-button\"]")).click();//button-1 confirm-order-next-step-button
-        Thread.sleep(2000);
-        Assert.assertEquals(driver.findElement(By.xpath("//div[@class=\"title\"]/strong")).getText(),"Your order has been successfully processed!");
+        CreateOrder createOrder = new CreateOrder(driver);
+        createOrder.AcceptTermsOfService();
+        createOrder.ClickCheckout();
+        createOrder.AddPurchaseData();
+        createOrder.ClickNextNextNext();
+        String Response=createOrder.ReponseGet();
+        Assert.assertEquals(Response,"Your order has been successfully processed!");
 
 
 

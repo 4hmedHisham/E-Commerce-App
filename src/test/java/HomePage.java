@@ -48,4 +48,7 @@ public class HomePage {
         String txt=driver.findElement(By.xpath("//div[@class='page-title']")).getText();
         return txt;
     }
+    public void  ClickCartIcon(){
+        driver.findElement(By.id("topcartlink")).click();
+    }
 }
